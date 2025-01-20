@@ -1,26 +1,42 @@
 const {readDatabase, writeDatabase} = require('../services/databaseService');
 
-//Función que devuelve todas las mascotas en el archivo json
+//Función para obtener una lista de mascotas filtradas y devuelve todas la lista en formato json
 const getPets = (req, res)=>{
 
     //Para obtener la base de datos
     const db = readDatabase();
+    
+    //Para obtener los parámetros de de la solicitud HTTP
+    const {type, status} = req.query;
 
-    //Devuelve la lista de mascotas
-    res.json(db.pets);
+    //Inicialización de la lista de mascotas filtradas
+    let filteredPets = db.pets;
+
+    //Filtro por tipo de animal
+    if (type) {
+       filteredPets = filteredPets.filter(pet => pet.type.toLowerCase()=== type.toLowerCase()); 
+    };
+
+    //Filtro por estado 
+    if(status){
+        filteredPets = filteredPets.filter(pet=> pet.status.toLowerCase()=== status.toLowerCase());
+    };
+
+    //Devuelve la lista de mascotas filtradas
+    res.json(filteredPets);
 };
 
 //Función que añade una nueva mascota al archivo json
 const addPet = (req,res)=>{
 
     //Pra obtener los datos de la mascota del cuerpo de la solicitud HTTP
-    const {name, type, description, image} = req.body;
+    const {name, type, description, image, age, size} = req.body;
     
     //Se obtiene la base de datos
     const db = readDatabase();
 
-    //Creación de una nueva mascota
-    const newPet = {id: Date.now(), name, type, description, image};
+    //Creación de una nueva mascota con los datos obtenidos del cuerpo de la solicitud
+    const newPet = {id: Date.now(), name, type, description, image, age, size, status:"available"};
     
     //Se agrega la mascota a la base de datos
     db.pets.push(newPet);
@@ -38,7 +54,7 @@ const update = (req, res)=>{
     const {id} = req.params;
 
     //Obtener los datos de la mascota del cuerpo de la solicitud
-    const {name, type, description, image} = req.body;
+    const {name, type, description, image, age, size, status} = req.body;
     const db = readDatabase();
 
     //Encontrar la mascota en la base de datos
@@ -54,6 +70,10 @@ const update = (req, res)=>{
     pet.type = type;
     pet.description = description;
     pet.image = image;
+    pet.age = age;
+    pet.size = size;
+    pet.status = status;
+   
     writeDatabase(db);
     res.json(pet);
 };
@@ -80,4 +100,38 @@ const deletePet = (req, res)=> {
     res.json({message:'La Mascota ha sido eliminada exitosamente'});
 };
 
-module.exports = {getPets, addPet, update, deletePet};
+//Función para asignar mascota a un usuario
+const adoptPet =(req, res)=>{
+    //Para obtener datos de la adopción del cuerpo de la solicitud HTTP
+    const {petId, userId}= req.body;
+    const db = readDatabase();
+    
+    //Búsqueda de mascota y usuario en la base de datos que coinciden con el ID proporcionados
+    const pet = db.pets.find(pet =pet.id === parseInt(petId));
+    const user = db.users.find(user => user.id ===parseInt(userId));
+
+    //Verificación de si la mascota y el usuario existen en la base de datos
+    if (!pet) {
+        return res.status(404).json({error:"La mascota solicitado NO fue encontrada"});
+    };
+
+    if (!user) {
+        return res.status(404).json({error:"El usuarios solicitado NO fue encontrado"});        
+    };
+
+    //Verificación de la disponibilidad de la mascota
+    if (pet.status !=="available") {
+        return res.status(400).json({error:"Mascota NO DISPONIBLE para adopción"});
+    };
+
+    //Actualiza el estado de la mascota
+    pet.status = "adopted";
+
+    //Agrega una nueva adopción a la base de datos
+    db.adoptions.push({id:Date.now(), userId, petId, date:new Date()});
+    writeDatabase(db);
+
+    res.json({message: "La mascota ha sido adoptada con éxito", pet});
+}
+
+module.exports = {getPets, addPet, update, deletePet, adoptPet};
