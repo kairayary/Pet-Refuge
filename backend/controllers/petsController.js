@@ -48,7 +48,7 @@ const addPet = (req,res)=>{
 };
 
 //Función que actualiza los detalles de una mascota por su ID
-const update = (req, res)=>{
+const updatePet = (req, res)=>{
 
     //Obtener el ID de la mascota de los parámetros de la ruta HTTP
     const {id} = req.params;
@@ -134,4 +134,4 @@ const adoptPet =(req, res)=>{
     res.json({message: "La mascota ha sido adoptada con éxito", pet});
 }
 
-module.exports = {getPets, addPet, update, deletePet, adoptPet};
+module.exports = {getPets, addPet, updatePet, deletePet, adoptPet};
