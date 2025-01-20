@@ -3,7 +3,7 @@ const path = require ('path');
 
 const dbPath = path.join(__dirname, '../data/database.json');
 
-//Para leer los datos del archivo JSON
+//Para leer los datos del archivo JSON y retorna los datos como un objeto Javascript
 
 function readDatabase() {
     const data = fs.readFileSync(dbPath, 'utf8');
