@@ -107,7 +107,7 @@ const adoptPet =(req, res)=>{
     const db = readDatabase();
     
     //Búsqueda de mascota y usuario en la base de datos que coinciden con el ID proporcionados
-    const pet = db.pets.find(pet =pet.id === parseInt(petId));
+    const pet = db.pets.find(pet => pet.id === parseInt(petId));
     const user = db.users.find(user => user.id ===parseInt(userId));
 
     //Verificación de si la mascota y el usuario existen en la base de datos
