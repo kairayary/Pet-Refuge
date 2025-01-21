@@ -1,5 +1,11 @@
 {
-    "users":[],
-    "pets":[], 
-    "adoptions" : []
+  "users": [
+    {
+      "id": 1737477923835,
+      "username": "maria",
+      "password": "$2b$10$gfgslSRAx0h9GzsM1oneqOC/C/K.MAdxzGi56sKgMj21jJ7CTcm2W"
+    }
+  ],
+  "pets": [],
+  "adoptions": []
 }
