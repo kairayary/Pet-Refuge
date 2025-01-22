@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetRefuge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--Nabar-->
+
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/login">Iniciar sesión</a></li>
+            <li><a href="/register">Registrarse</a></li>    
+        </ul>
+    </nav>
+   
+    <section class="image-between-navbar-banner">
+        <img src="./image/Mascotas.jpeg" alt="Refugio de Mascotas">
+        <div class="text-overlay">
+            <h1>Bienvenidos al Refugio de Mascotas</h1>
+            <p>Adopta una mascota y cambia una vida... Ayúdanos a encontrar un hogar para nuestros amigos.</p>
+        </div>
+    </section>
+   
+
+    <!-- Buscador de mascotas -->
+    <section id="search-section">
+        <input type="text" id="search-name" placeholder="Buscar por nombre">
+        <select id="type-filter">
+            <option value="">Seleccionar tipo</option>
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+            <option value="conejo">Conejo</option>
+        </select>
+        <select id="status-filter">
+            <option value="">Seleccionar estado</option>
+            <option value="available">Disponible</option>
+            <option value="adopted">Adoptado</option>
+        </select>
+        <button id="search-button">Buscar</button>
+    </section>
+
+    <!-- Galería de Mascotas -->
+    <section id="pets-gallery">
+        <!-- Las tarjetas de mascotas se insertarán aquí dinámicamente -->
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
