@@ -4,8 +4,20 @@
       "id": 1737477923835,
       "username": "maria",
       "password": "$2b$10$gfgslSRAx0h9GzsM1oneqOC/C/K.MAdxzGi56sKgMj21jJ7CTcm2W"
+    },
+    {
+      "id": 1737572724982,
+      "username": "Esther",
+      "password": "$2b$10$yZ1dte8nAvbzKieY8/ezKew0FwVExnQrBpGSRUAr/s2W0u55APihi"
     }
   ],
   "pets": [],
-  "adoptions": []
+  "adoptions": [
+    {
+      "id": 1737572631456,
+      "userId": 1737477923835,
+      "petId": 1737572256929,
+      "date": "2025-01-22T19:03:51.456Z"
+    }
+  ]
 }
