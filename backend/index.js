@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const petsRoutes = require('./routes/petsRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+const path = require('path');
 
 // Cargamos las variables de entorno desde el archivo .env
 dotenv.config();
@@ -11,6 +12,10 @@ const app = express();
 
 // Middleware para parsear el cuerpo de las solicitudes en JSON
 app.use(express.json());
+
+// Ruta para servir archivos estaticos de public
+app.use(express.static(path.join(__dirname, '../public')));
+
 
 // Rutas para mascotas y usuarios
 app.use('/pets', petsRoutes);
