@@ -9,6 +9,9 @@ dotenv.config();
 // Creamos una aplicación Express
 const app = express();
 
+// Middleware para servir archivos estáticos desde el directorio "public"
+app.use(express.static('../public'));
+
 // Middleware para parsear el cuerpo de las solicitudes en JSON
 app.use(express.json());
 
