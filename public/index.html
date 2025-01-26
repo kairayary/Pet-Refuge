@@ -12,11 +12,11 @@
     <nav>
         <ul>
             <li><a href="/">Inicio</a></li>
-            <li><a href="/login">Iniciar sesión</a></li>
-            <li><a href="/register">Registrarse</a></li>    
+            <li><a href="./register-login.html">Iniciar sesión</a></li>
+            <li><a href="./register-login.html">Registrarse</a></li>
         </ul>
     </nav>
-   
+
     <section class="image-between-navbar-banner">
         <img src="./image/Mascotas.jpeg" alt="Refugio de Mascotas">
         <div class="text-overlay">
@@ -24,7 +24,6 @@
             <p>Adopta una mascota y cambia una vida... Ayúdanos a encontrar un hogar para nuestros amigos.</p>
         </div>
     </section>
-   
 
     <!-- Buscador de mascotas -->
     <section id="search-section">
@@ -42,6 +41,33 @@
         </select>
         <button id="search-button">Buscar</button>
     </section>
+    
+     <!-- Formulario de gestión de mascotas -->
+     <section id="manage-pets-section">
+        <h2>Gestionar Mascotas</h2>
+        <form id="add-pet-form">
+            <input type="text" id="pet-name" placeholder="Nombre de la mascota" required>
+            
+            <select id="pet-type" required>
+                <option value="dog">Perro</option>
+                <option value="cat">Gato</option>
+                <option value="rabbit">Conejo</option>
+            </select>
+    
+            <input type="number" id="pet-age" placeholder="Edad" min="0" required>
+    
+            <select id="pet-size" required>
+                <option value="small">Pequeño</option>
+                <option value="medium">Mediano</option>
+                <option value="large">Grande</option>
+            </select>
+    
+            <textarea id="pet-description" placeholder="Descripción"></textarea>
+    
+            <button type="button" id="add-pet-button">Agregar Mascota</button>
+        </form>
+    </section>
+    
 
     <!-- Galería de Mascotas -->
     <section id="pets-gallery">
