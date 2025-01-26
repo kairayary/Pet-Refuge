@@ -11,18 +11,18 @@ dotenv.config();
 const app = express();
 
 // Middleware para servir archivos estáticos desde el directorio "public"
-app.use(express.static('../public'));
+// app.use(express.static('../public'));
 
 // Middleware para parsear el cuerpo de las solicitudes en JSON
 app.use(express.json());
 
 // Ruta para servir archivos estaticos de public
-app.use(express.static(path.join(__dirname, '../public')));
+ app.use(express.static(path.join(__dirname, '../public')));
 
 
 // Rutas para mascotas y usuarios
 app.use('/pets', petsRoutes);
-app.use('/users', usersRoutes);
+app.use('/', usersRoutes);
 
 // Middleware de manejo de errores 404 para rutas no encontradas
 app.use((req, res) => {
