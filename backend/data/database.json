@@ -9,9 +9,135 @@
       "id": 1737572724982,
       "username": "Esther",
       "password": "$2b$10$yZ1dte8nAvbzKieY8/ezKew0FwVExnQrBpGSRUAr/s2W0u55APihi"
+    },
+    {
+      "id": 1737656158251,
+      "username": "Jose",
+      "password": "$2b$10$lJ4weAxZsH6Zk.RfE.Y2kOy8J/nMLceHdD5LznZ/997LGQ/KZUuH6"
+    },
+    {
+      "id": 1737658686406,
+      "username": "Carmen",
+      "password": "$2b$10$bWQ1Mc6X0vaM7jUTRLivau4YPLJsLLTWeCgl4n4svNpfLTCO1hjpC"
+    },
+    {
+      "id": 1737765428260,
+      "username": "Mayra",
+      "password": "$2b$10$cSXwPOYqiOe4rIH6cqXeh.UCd899n4A3p0mTcCx27ShPB5WORnM6y"
     }
   ],
-  "pets": [],
+  "pets": [
+    {
+      "id": 1737656248236,
+      "name": null,
+      "description": null,
+      "age": null,
+      "size": null
+    },
+    {
+      "id": 1737656248246,
+      "name": "Luna",
+      "type": "rabbit",
+      "description": "A friendly rabbit",
+      "image": "",
+      "age": 1,
+      "size": "large",
+      "status": "adopted"
+    },
+    {
+      "id": 1737656248346,
+      "name": "Khalua",
+      "type": "dog",
+      "description": "A friendly dog",
+      "image": "",
+      "age": 3,
+      "size": "large",
+      "status": "adopted"
+    },
+    {
+      "id": 1737845621202,
+      "name": "Estrellita",
+      "type": "gato",
+      "description": "Hermosa gata gris",
+      "age": 3,
+      "size": "small"
+    },
+    {
+      "id": 1737901984735,
+      "name": "Cami",
+      "description": "Gata Persa",
+      "age": 2,
+      "size": "medium"
+    },
+    {
+      "id": 1737903557542,
+      "name": "Carmen",
+      "type": "Perro",
+      "description": "Hermosa perra de color gris",
+      "age": 8,
+      "size": "medium"
+    },
+    {
+      "id": 1737904992162,
+      "name": "Leon",
+      "type": "dog",
+      "description": "Bello doberman adiestrado y muy cariñoso",
+      "age": 5,
+      "size": "large",
+      "status": "available"
+    },
+    {
+      "id": 1737911762686,
+      "name": "linda",
+      "type": "conejo",
+      "description": "Conejo blanco muy tierno",
+      "age": 3,
+      "size": "small"
+    },
+    {
+      "id": 1737913210855,
+      "name": "Bobby",
+      "description": "Hermoso gato persa gris",
+      "age": 3,
+      "size": "medium"
+    },
+    {
+      "id": 1737914762032,
+      "name": "Amanda",
+      "type": "cat",
+      "description": "Bella gata siamesa",
+      "age": 6,
+      "size": "large",
+      "status": "available"
+    },
+    {
+      "id": 1737914797521,
+      "name": "Reyna",
+      "type": "",
+      "description": "Gata hermosa y amorosa",
+      "age": null,
+      "size": ""
+    },
+  
+    {
+      "id": 1737930104922,
+      "name": "Nina",
+      "type": "rabbit",
+      "description": "Coqueta coneja blanca",
+      "age": 6,
+      "size": "small",
+      "status": "available"
+    },
+    {
+      "id": 1737930132100,
+      "name": "Minina",
+      "type": "cat",
+      "description": "Hermosa gata negra",
+      "age": 3,
+      "size": "small",
+      "status": "disponible"
+    }
+  ],
   "adoptions": [
     {
       "id": 1737572631456,
