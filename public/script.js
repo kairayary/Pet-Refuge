@@ -1,3 +1,68 @@
+//Manejo de formularios
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginUsername = document.getElementById('loginUsername');
+    const loginPassword = document.getElementById('loginPassword');
+    const registerUsername = document.getElementById('registerUsername');
+    const registerEmail = document.getElementById('registerEmail');
+    const registerPassword = document.getElementById('registerPassword');
+
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        // Enviar datos de inicio de sesión al backend
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: loginUsername.value,
+                password: loginPassword.value
+            })
+        });
+
+        if (response.ok) {
+            // Redirigir o mostrar mensaje de éxito
+            alert('Inicio de sesión exitoso');
+            loginUsername.value = '';
+            loginPassword.value = '';
+            window.location.href = "/"
+        } else {
+            alert('Credenciales incorrectas');
+        }
+    });
+
+    registerForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        // Enviar datos de registro al backend
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: registerUsername.value,
+                email: registerEmail.value,
+                password: registerPassword.value
+            })
+        });
+
+        if (response.ok) {
+            alert('Cuenta creada exitosamente');
+            registerUsername.value = ''; 
+            registerEmail.value = ''; 
+            registerPassword.value = ''; 
+
+            toggleForm();
+        } else {
+            alert('Error al crear la cuenta');
+        }
+    });
+});
+
+const toggleForm = () => {
+    const contenedor = document.querySelector('.formularios');
+    contenedor.classList.toggle('active');
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const petsGallery = document.getElementById('pets-gallery');
     const searchButton = document.getElementById('search-button');
@@ -14,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_URL = '/pets';
 
     const displayPets = (pets) => {
-        petsGallery.innerHTML = ''; // Limpiar la galería
+        petsGallery.innerHTML = '';
         pets.forEach((pet) => {
             const petCard = document.createElement('div');
             petCard.classList.add('pet-card');
@@ -100,10 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const adoptPet = async (id) => {
         const userId = prompt('Ingrese el Nombre del usuario que adopta la mascota:');
         try {
-            const response = await fetch(`${API_URL}/adopt`, { 
-                method: 'POST', 
+            const response = await fetch(`${API_URL}/adopt`, {
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ petId: id, userId: userId  }) 
+                body: JSON.stringify({ petId: id, userId: userId })
             });
             if (response.ok) {
                 fetchPets();
