@@ -5,30 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro y Login</title>
-
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
+  <nav>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="#">Iniciar sesión</a></li>
+        <li><a href="#">Registrarse</a></li>
+    </ul>
+</nav>
 
-    <!-- Formulario de registro -->
-    <section id="register-section">
-        <form id="register-form">
-            <input type="text" id="register-username" placeholder="Nombre de usuario">
-            <input type="password" id="register-password" placeholder="Contraseña">
-            <button id="register-button">Registrar</button>
-        </form>
-    </section>
-
-    <!-- Formulario de login -->
-    <section id="login-section">
-        <form id="login-form">
-            <input type="text" id="login-username" placeholder="Nombre de usuario">
-            <input type="password" id="login-password" placeholder="Contraseña">
-            <button id="login-button">Iniciar sesión</button>
-        </form>
-    </section>
-
-    <script src="script.js"></script>
+    <main>
+        <div class="formularios">
+          <div class="user signinBx">
+            <div class="imgBx"><img src="./image/register.jpg" alt="" /></div>
+            <div class="formBx">
+              <form id="loginForm" onsubmit="return false;">
+                <h2>Iniciar Sesión</h2>
+                <label for="loginUsername">Username</label>
+                <input type="text" id="loginUsername" placeholder="Username" />
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Password" />
+                <input type="submit" name="" value="Iniciar sesión" />
+                <p class="signup">
+                  No tienes una cuenta ?
+                  <a href="#" onclick="toggleForm();">Registrarse.</a>
+                </p>
+                <p class="message" id="message"></p>
+              </form>
+            </div>
+          </div>
+          <div class="user signupBx">
+            <div class="formBx">
+              <form id="registerForm" onsubmit="return false;">
+                <h2>Crear una cuenta</h2>
+                <label for="registerUsername">Username</label>
+                <input type="text" id="registerUsername" placeholder="Username" />
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" placeholder="Email Address" />
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" placeholder="Create Password" />
+                <input type="submit" name="" value="Registrarse" />
+                <p class="signup">
+                  Ya tienes una cuenta?
+                  <a href="#" onclick="toggleForm();">Iniciar Sesión.</a>
+                </p>
+                <p class="message" id="message"></p>
+              </form>
+            </div>
+            <div class="imgBx"><img class="login" src="./image/login.avif" alt="" /></div>
+          </div>
+        </div>
+    </main>
+    <script src="./script.js"></script>
 </body>
 
 </html>
