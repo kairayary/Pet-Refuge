@@ -6,7 +6,7 @@ const {readDatabase, writeDatabase} = require('../services/databaseService');
 const registerUser = (req, res)=>{
    
     //Obtener los datos del cuerpo de la solicitud
-    const {username, password} = req.body;
+    const {username,email, password} = req.body;
 
     //Para leer la base de datos usando la función readDatabase
     const db = readDatabase();
@@ -15,14 +15,14 @@ const registerUser = (req, res)=>{
     const existingUser =db.users.find(user=> user.username === username);
     
     if (existingUser) {
-        return res.status(400).json({error:'El usuario ys existe'});
+        return res.status(400).json({error:'El usuario ya existe'});
     };
 
     //Para encriptar la contraseña usando bcrypt.hashSync
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     //Agregar el usuario a la bd, primero se crea el objeto con los datos y luego se pushea
-    db.users.push({id: Date.now(), username, password: hashedPassword});
+    db.users.push({id: Date.now(), username,email, password: hashedPassword});
     
     //Se escribe la base de datos actualizada
     writeDatabase(db);
