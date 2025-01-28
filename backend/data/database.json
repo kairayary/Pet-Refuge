@@ -1,29 +1,9 @@
 {
   "users": [
     {
-      "id": 1737477923835,
-      "username": "maria",
-      "password": "$2b$10$gfgslSRAx0h9GzsM1oneqOC/C/K.MAdxzGi56sKgMj21jJ7CTcm2W"
-    },
-    {
-      "id": 1737572724982,
-      "username": "Esther",
-      "password": "$2b$10$yZ1dte8nAvbzKieY8/ezKew0FwVExnQrBpGSRUAr/s2W0u55APihi"
-    },
-    {
-      "id": 1737656158251,
-      "username": "Jose",
-      "password": "$2b$10$lJ4weAxZsH6Zk.RfE.Y2kOy8J/nMLceHdD5LznZ/997LGQ/KZUuH6"
-    },
-    {
-      "id": 1737658686406,
-      "username": "Carmen",
-      "password": "$2b$10$bWQ1Mc6X0vaM7jUTRLivau4YPLJsLLTWeCgl4n4svNpfLTCO1hjpC"
-    },
-    {
-      "id": 1737765428260,
-      "username": "Mayra",
-      "password": "$2b$10$cSXwPOYqiOe4rIH6cqXeh.UCd899n4A3p0mTcCx27ShPB5WORnM6y"
+      "id": 1738025974676,
+      "username": "Valentina",
+      "password": "$2b$10$lCnYwJuJwyCeuKnT3a2Hw.Gd/yfBwRNN37Li72/jQoQkznWJikEF."
     }
   ],
   "pets": [
@@ -118,7 +98,6 @@
       "age": null,
       "size": ""
     },
-  
     {
       "id": 1737930104922,
       "name": "Nina",
@@ -136,6 +115,15 @@
       "age": 3,
       "size": "small",
       "status": "disponible"
+    },
+    {
+      "id": 1738006733451,
+      "name": "Apolon",
+      "type": "Perro",
+      "description": "Doberman amoroso",
+      "age": 9,
+      "size": "large",
+      "status": "adoptado"
     }
   ],
   "adoptions": [
