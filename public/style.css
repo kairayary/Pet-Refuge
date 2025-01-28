@@ -1,8 +1,8 @@
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     background-color: #f7f7f7;
 }
 
@@ -31,13 +31,13 @@ nav ul li a {
 }
 
 nav ul li a:active {
-    background-color: #444;
+    background-color: #ff6f61;
     border-radius: 5px;
 }
 
 
 nav ul li a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 
@@ -46,8 +46,8 @@ nav ul li a:hover {
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.7); 
-    z-index: 10; 
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10;
     text-align: center;
     color: white;
 }
@@ -67,13 +67,12 @@ nav ul li a:hover {
 
 .text-overlay {
     position: absolute;
-    top: 21%;
+    top: 18%;
     left: 0;
-    width: 100%;
-    transform: translateY(-40%);
+    min-width: 100%;
+    transform: translateY(-50%);
     color: white;
     background: rgba(105, 103, 103, 0.5);
-    padding: 20px;
     text-align: center;
 }
 
@@ -98,9 +97,9 @@ nav ul li a:hover {
 }
 
 .image-between-navbar-banner img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
@@ -116,7 +115,8 @@ nav ul li a:hover {
     z-index: 5;
 }
 
-#search-section input, #search-section select {
+#search-section input,
+#search-section select {
     padding: 10px;
     margin: 10px;
     font-size: 1rem;
@@ -139,6 +139,75 @@ nav ul li a:hover {
     background-color: #e65c4f;
 }
 
+#manage-pets-section {
+    position: relative;
+    background-color: rgba(105, 103, 103, 0.5);
+    color: white;
+    text-align: center;
+    margin-top: .5rem;
+    z-index: 5;
+    width: 100%;
+    left: 0;
+    transform: translateY(-40%);
+    
+}
+
+#manage-pets-section h2 {
+    font-size: 2rem;
+    text-shadow: -2px -2px 0px #ff6f61, 2px -2px 0px #ff6f61, -2px 2px 0px #ff6f61, 2px 2px 0px #cc0000;
+    color: white;
+}
+
+#add-pet-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+#add-pet-form input,
+#add-pet-form select,
+#add-pet-form textarea {
+    padding: 5px;
+    margin: 5px;
+    font-size: 1rem;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    width: 12%;
+   
+}
+
+#add-pet-form textarea {
+    height: 30px;
+    resize: none;
+}
+
+#add-pet-button {
+    padding: 2px 5px;
+    font-size: 1rem;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#add-pet-button:hover {
+    background-color: #e65c4f;
+}
+
+@media (max-width: 768px) {
+
+    #add-pet-form input,
+    #add-pet-form select,
+    #add-pet-form textarea {
+        width: 90%;
+        
+    }
+}
 
 #pets-gallery {
     display: flex;
@@ -186,24 +255,193 @@ nav ul li a:hover {
     transition: all 0.3s ease;
 }
 
-
-/* 
-Responsive */
 @media (max-width: 768px) {
     .text-overlay h1 {
         font-size: 2rem;
     }
+
     .text-overlay p {
         font-size: 1rem;
     }
-};
+}
 
 @media (max-width: 768px) {
     #search-section {
         position: static;
         margin-top: 20px;
     }
-    #search-section input, #search-section select {
+
+    #search-section input,
+    #search-section select {
         width: 80%;
     }
-};
+}
+
+;
+
+main {
+    position: absolute;
+    min-height: 100vh;
+    background-color: rgba(105, 103, 103, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+main .formularios {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    background: #fff;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-left: 20%;
+}
+
+main .formularios .user {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+main .formularios .user .imgBx {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: rgba(105, 103, 103, 0.5);;
+    transition: 0.5s;
+
+}
+
+main .formularios .user .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+main .formularios .user .formBx {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    transition: 0.5s;
+}
+
+main .formularios .user .formBx form h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+    color: #e65c4f;
+}
+
+main .formularios .user .formBx form input {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background: #f5f5f5;
+    color: #e65c4f;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin: 8px 0;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+main .formularios .user .formBx form input[type='submit'] {
+    max-width: 100px;
+    background: #e65c4f;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+main .formularios .user .formBx form .signup {
+    position: relative;
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #555;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+main .formularios .user .formBx form .signup a {
+    font-weight: 600;
+    text-decoration: none;
+    color: #e65c4f;
+}
+
+main .formularios .signupBx {
+    pointer-events: none;
+}
+
+main .formularios.active .signupBx {
+    pointer-events: initial;
+}
+
+main .formularios .signupBx .formBx {
+    left: 100%;
+}
+
+main .formularios.active .signupBx .formBx {
+    left: 0;
+}
+
+main .formularios .signupBx .imgBx {
+    left: -100%;
+}
+
+main .formularios.active .signupBx .imgBx {
+    left: 0%;
+}
+
+main .formularios .signinBx .formBx {
+    left: 0%;
+}
+
+main .container.active .signinBx .formBx {
+    left: 100%;
+}
+
+main .formularios .signinBx .imgBx {
+    left: 0%;
+}
+
+main .formularios.active .signinBx .imgBx {
+    left: -100%;
+}
+
+@media (max-width: 991px) {
+    main .formularios {
+        max-width: 400px;
+    }
+
+    main .formularios .imgBx {
+        display: none;
+    }
+
+    main .formularios .user .formBx {
+        width: 100%;
+    }
+}
