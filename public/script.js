@@ -11,30 +11,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        // Enviar datos de inicio de sesión al backend
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username: loginUsername.value,
-                password: loginPassword.value
-            })
-        });
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: loginUsername.value,
+                    password: loginPassword.value
+                })
+            });
+            const result = await response.json();
+            if (response.ok) {
 
-        if (response.ok) {
-            // Redirigir o mostrar mensaje de éxito
-            alert('Inicio de sesión exitoso');
-            loginUsername.value = '';
-            loginPassword.value = '';
-            window.location.href = "/"
-        } else {
-            alert('Credenciales incorrectas');
+                localStorage.setItem('token', result.token);
+                alert('Inicio de sesión exitoso');
+                loginUsername.value = '';
+                loginPassword.value = '';
+                window.location.href = "/"
+            } else {
+                alert('Credenciales incorrectas');
+            }
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+            alert('Hubo un error al iniciar sesión');
         }
     });
 
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        // Enviar datos de registro al backend
+
         const response = await fetch('/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -47,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
             alert('Cuenta creada exitosamente');
-            registerUsername.value = ''; 
-            registerEmail.value = ''; 
-            registerPassword.value = ''; 
+            registerUsername.value = '';
+            registerEmail.value = '';
+            registerPassword.value = '';
 
             toggleForm();
         } else {
@@ -83,20 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
         pets.forEach((pet) => {
             const petCard = document.createElement('div');
             petCard.classList.add('pet-card');
+            petCard.setAttribute('data-id', pet.id);
+            petCard.setAttribute('data-status', pet.status);
 
             let imagePath;
             switch (pet.type.toLowerCase()) {
-                case 'cat':
-                    imagePath = './image/gato.png';
-                    break;
-                case 'dog':
-                    imagePath = './image/perro.png';
-                    break;
-                case 'rabbit':
-                    imagePath = './image/conejo.png';
-                    break;
-                default:
-                    imagePath = './image/animales.png';
+                case 'gato': imagePath = './image/gato.png'; break;
+                case 'perro': imagePath = './image/perro.png'; break;
+                case 'conejo': imagePath = './image/conejo.png'; break;
+                default: imagePath = './image/animales.png';
             }
 
             petCard.innerHTML = `
@@ -106,11 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>Edad: ${pet.age} años</p>
                 <p>Tamaño: ${pet.size}</p>
                 <p>Descripción: ${pet.description}</p>
-                <p class="status">${pet.adopted ? 'Adoptado' : 'Disponible'}</p>
+                <p class="status">${pet.status === 'adoptado' ? 'Adoptado' : 'Disponible'}</p>
                 <div class="pet-actions">
                     <button class="update-button" data-id="${pet.id}">Actualizar</button>
-                    <button class="delete-button" data-id="${pet.id}">Eliminar</button>
-                    ${!pet.adopted ? `<button class="adopt-button" data-id="${pet.id}">Adoptar</button>` : ''}
+                    ${pet.status !== 'adoptado' ? `<button class="delete-button" data-id="${pet.id}">Eliminar</button>` : ''}
+                    ${pet.status !== 'adoptado' ? `<button class="adopt-button" data-id="${pet.id}">Adoptar</button>` : ''}
                 </div>
             `;
             petsGallery.appendChild(petCard);
@@ -119,31 +119,49 @@ document.addEventListener('DOMContentLoaded', () => {
         attachButtonEvents();
     };
 
-    const fetchPets = async (filters = {}) => {
-        const queryParams = new URLSearchParams(filters).toString();
+    const fetchPets = async (filteredPets = {}) => {
+        const queryParams = new URLSearchParams(filteredPets).toString();
         try {
-            const response = await fetch(`${API_URL}?${queryParams}`);
+            const response = await fetch(`${API_URL}?${queryParams}&t=${Date.now()}`, {
+                method: 'GET',
+                headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' },
+            });
+
             const result = await response.json();
-            displayPets(result.pets);
+            console.log('Mascotas actualizadas:', result);
+            if (result.pets && result.pets.length > 0) {
+
+                displayPets(result.pets);
+            } else {
+                petsGallery.innerHTML = '<p>No se encontraron mascotas con los filtros aplicados.</p>';
+                // fetchPets(); 
+            }
         } catch (error) {
             console.error('Error al obtener mascotas:', error);
+            petsGallery.innerHTML = '<p>Error al cargar las mascotas.</p>';
         }
     };
 
+
     const addPet = async () => {
+        const token = localStorage.getItem('token'); // Obtener el token
+        if (!token) {
+            alert('Debes iniciar sesión para agregar una mascota.');
+            return;
+        }
         const newPet = {
             name: petNameInput.value,
             type: petTypeInput.value,
             age: parseInt(petAgeInput.value),
             size: petSizeInput.value,
             description: petDescriptionInput.value,
-            adopted: false,
+            status: 'Disponible',
         };
 
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify(newPet),
             });
 
@@ -163,37 +181,85 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const adoptPet = async (id) => {
+        const token = localStorage.getItem('token'); // Obtener el token
+        if (!token) {
+            alert('Debes iniciar sesión para adoptar una mascota.');
+            return;
+        };
+
         const userId = prompt('Ingrese el Nombre del usuario que adopta la mascota:');
+        if (!userId) return;
+
         try {
             const response = await fetch(`${API_URL}/adopt`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ petId: id, userId: userId })
             });
+
+            const result = await response.json();
+            console.log('Respuesta del servidor:', result);
+
             if (response.ok) {
-                fetchPets();
+                alert('¡Mascota adoptada exitosamente!');
+
+
+                const petCard = document.querySelector(`.pet-card[data-id="${id}"]`);
+                if (petCard) {
+                    petCard.querySelector('.status').textContent = 'Adoptado';
+                    petCard.querySelector('.adopt-button')?.remove();
+                    petCard.querySelector('.delete-button')?.remove();
+                    petCard.setAttribute('data-status', 'adoptado');
+                }
+
+
+            } else {
+                console.error('Error al adoptar mascota:', result);
+                alert('Hubo un problema al adoptar la mascota.');
             }
         } catch (error) {
             console.error('Error al adoptar mascota:', error);
+            alert('Hubo un error al intentar adoptar la mascota.');
         }
     };
 
     const deletePet = async (id) => {
+        const token = localStorage.getItem('token'); // Obtener el token
+        if (!token) {
+            alert('Debes iniciar sesión para eliminar una mascota.');
+            return;
+        };
+
         try {
-            await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-            fetchPets();
+            const response = await fetch(`${API_URL}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`, // Enviar el token
+                }
+            });
+            if (response.ok) {
+                fetchPets();
+            } else {
+                console.error('Error al eliminar mascota:', await response.text());
+            }
+
         } catch (error) {
             console.error('Error al eliminar mascota:', error);
         }
     };
 
     const updatePet = async (id) => {
+        const token = localStorage.getItem('token'); // Obtener el token
+        if (!token) {
+            alert('Debes iniciar sesión para actualizar una mascota.');
+            return;
+        };
         const updatedName = prompt('Nuevo nombre:');
         const updatedType = prompt('Tipo:');
         const updatedAge = prompt('Nueva edad:');
         const updatedDescription = prompt('Nueva descripción:');
-        const updatedSize = prompt('Nuevo tamaño (small, medium, large):');
-        const updatedStatus = prompt('Nuevo status (adoptada(o) ó disponible):');
+        const updatedSize = prompt('Nuevo tamaño (pequeño, mediano, grande):');
+
 
         const updatedPet = {
             name: updatedName,
@@ -201,16 +267,16 @@ document.addEventListener('DOMContentLoaded', () => {
             age: parseInt(updatedAge),
             description: updatedDescription,
             size: updatedSize,
-            status: updatedStatus
+
         };
 
         try {
             await fetch(`${API_URL}/${id}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify(updatedPet),
             });
-            fetchPets();
+
         } catch (error) {
             console.error('Error al actualizar mascota:', error);
         }
@@ -234,9 +300,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchButton.addEventListener('click', () => {
         const filters = {
-            name: searchNameInput.value.trim() || undefined,
-            type: typeFilter.value !== 'all' ? typeFilter.value : undefined,
-            adopted: statusFilter.value === 'adopted' ? true : statusFilter.value === 'available' ? false : undefined,
+            name: searchNameInput.value.trim(),
+            type: typeFilter.value,
+            status: statusFilter.value,
         };
         fetchPets(filters);
     });
