@@ -1,137 +1,89 @@
 {
-  "users": [
-    {
-      "id": 1738025974676,
-      "username": "Valentina",
-      "password": "$2b$10$lCnYwJuJwyCeuKnT3a2Hw.Gd/yfBwRNN37Li72/jQoQkznWJikEF."
-    }
-  ],
   "pets": [
     {
-      "id": 1737656248236,
-      "name": null,
-      "description": null,
-      "age": null,
-      "size": null
-    },
-    {
-      "id": 1737656248246,
-      "name": "Luna",
-      "type": "rabbit",
-      "description": "A friendly rabbit",
-      "image": "",
-      "age": 1,
-      "size": "large",
-      "status": "adopted"
-    },
-    {
-      "id": 1737656248346,
+      "id": 1738366647994,
       "name": "Khalua",
-      "type": "dog",
-      "description": "A friendly dog",
-      "image": "",
-      "age": 3,
-      "size": "large",
-      "status": "adopted"
-    },
-    {
-      "id": 1737845621202,
-      "name": "Estrellita",
-      "type": "gato",
-      "description": "Hermosa gata gris",
-      "age": 3,
-      "size": "small"
-    },
-    {
-      "id": 1737901984735,
-      "name": "Cami",
-      "description": "Gata Persa",
-      "age": 2,
-      "size": "medium"
-    },
-    {
-      "id": 1737903557542,
-      "name": "Carmen",
-      "type": "Perro",
-      "description": "Hermosa perra de color gris",
-      "age": 8,
-      "size": "medium"
-    },
-    {
-      "id": 1737904992162,
-      "name": "Leon",
-      "type": "dog",
-      "description": "Bello doberman adiestrado y muy cariñoso",
+      "type": "perro",
+      "description": "Schnauzer",
       "age": 5,
-      "size": "large",
-      "status": "available"
+      "size": "pequeño",
+      "status": "Adoptado"
     },
     {
-      "id": 1737911762686,
-      "name": "linda",
+      "id": 1738366667053,
+      "name": "Pompon",
       "type": "conejo",
-      "description": "Conejo blanco muy tierno",
-      "age": 3,
-      "size": "small"
+      "description": "Negro",
+      "age": 4,
+      "size": "grande",
+      "status": "Adoptado"
     },
     {
-      "id": 1737913210855,
-      "name": "Bobby",
-      "description": "Hermoso gato persa gris",
-      "age": 3,
-      "size": "medium"
+      "id": 1738366680081,
+      "name": "Michi",
+      "type": "gato",
+      "description": "Persa",
+      "age": 8,
+      "size": "grande",
+      "status": "Adoptado"
     },
     {
-      "id": 1737914762032,
-      "name": "Amanda",
-      "type": "cat",
-      "description": "Bella gata siamesa",
-      "age": 6,
-      "size": "large",
-      "status": "available"
+      "id": 1738368548124,
+      "name": "Blanquita",
+      "type": "perro",
+      "description": "Marron",
+      "age": 12,
+      "size": "grande",
+      "status": "Adoptado"
     },
     {
-      "id": 1737914797521,
-      "name": "Reyna",
-      "type": "",
-      "description": "Gata hermosa y amorosa",
-      "age": null,
-      "size": ""
-    },
-    {
-      "id": 1737930104922,
-      "name": "Nina",
-      "type": "rabbit",
-      "description": "Coqueta coneja blanca",
-      "age": 6,
-      "size": "small",
-      "status": "available"
-    },
-    {
-      "id": 1737930132100,
-      "name": "Minina",
-      "type": "cat",
-      "description": "Hermosa gata negra",
-      "age": 3,
-      "size": "small",
-      "status": "disponible"
-    },
-    {
-      "id": 1738006733451,
-      "name": "Apolon",
-      "type": "Perro",
-      "description": "Doberman amoroso",
-      "age": 9,
-      "size": "large",
-      "status": "adoptado"
+      "id": 1738370057915,
+      "name": "Maximo",
+      "type": "gato",
+      "description": "gris",
+      "age": 4,
+      "size": "pequeño",
+      "status": "Disponible"
     }
   ],
   "adoptions": [
     {
-      "id": 1737572631456,
-      "userId": 1737477923835,
-      "petId": 1737572256929,
-      "date": "2025-01-22T19:03:51.456Z"
+      "id": 1738368058843,
+      "userId": 1738366614047,
+      "petId": 1738366647994,
+      "date": "2025-02-01T00:00:58.843Z"
+    },
+    {
+      "id": 1738368556406,
+      "userId": 1738366614047,
+      "petId": 1738368548124,
+      "date": "2025-02-01T00:09:16.406Z"
+    },
+    {
+      "id": 1738368634788,
+      "userId": 1738366614047,
+      "petId": 1738366667053,
+      "date": "2025-02-01T00:10:34.788Z"
+    },
+    {
+      "id": 1738370082961,
+      "userId": 1738370008505,
+      "petId": 1738366680081,
+      "date": "2025-02-01T00:34:42.961Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1738366614047,
+      "username": "Mayra",
+      "email": "mayra@correo.com",
+      "password": "$2b$10$9ZGkw4s1oVDgImv8V43O3O/EJIBVJd8COw9vP44ixwPFbm5Bbja02"
+    },
+    {
+      "id": 1738370008505,
+      "username": "Oscar",
+      "email": "oscar@correo.com",
+      "password": "$2b$10$0wHHX.WgMr50EZ1agRfIze2rVqZyqkeknDQcTyXU3cDwbWois1jee"
     }
   ]
 }
