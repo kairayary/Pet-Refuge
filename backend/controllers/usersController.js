@@ -7,10 +7,17 @@ const registerUser = (req, res)=>{
    
     //Obtener los datos del cuerpo de la solicitud
     const {username,email, password} = req.body;
-
+    console.log("Datos recibidos:", req.body);
     //Para leer la base de datos usando la función readDatabase
     const db = readDatabase();
 
+    
+    if (!username || !email || !password) {
+        return res.status(400).json({ error: "Todos los campos son obligatorios" });
+    }
+
+      // Asegurar que users siempre sea un array
+      const users = db.users || [];
     //Busca el usuario y luego se verifica si existe en la base de datos
     const existingUser =db.users.find(user=> user.username === username);
     
@@ -21,12 +28,15 @@ const registerUser = (req, res)=>{
     //Para encriptar la contraseña usando bcrypt.hashSync
     const hashedPassword = bcrypt.hashSync(password, 10);
 
+    const newUser = { id: Date.now(), username, email, password:hashedPassword };
     //Agregar el usuario a la bd, primero se crea el objeto con los datos y luego se pushea
-    db.users.push({id: Date.now(), username,email, password: hashedPassword});
+    db.users.push(newUser);
     
     //Se escribe la base de datos actualizada
-    writeDatabase(db);
-
+     writeDatabase(db);
+     db.users = users;
+    
+    // return newUser;
     //Respuesta de éxito
     res.status(201).json({message: 'El usuario ha sido registrado exitosamente'});
 };
