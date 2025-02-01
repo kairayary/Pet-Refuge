@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors");
 const dotenv = require('dotenv');
 const petsRoutes = require('./routes/petsRoutes');
 const usersRoutes = require('./routes/usersRoutes');
@@ -10,19 +11,18 @@ dotenv.config();
 // Creamos una aplicación Express
 const app = express();
 
-// Middleware para servir archivos estáticos desde el directorio "public"
-// app.use(express.static('../public'));
+app.use(cors()) // habilitamos cors para que el frontend pueda comunicarse con el servidor
 
+app.use(express.urlencoded({ extended: true }))
 // Middleware para parsear el cuerpo de las solicitudes en JSON
 app.use(express.json());
-
-// Ruta para servir archivos estaticos de public
- app.use(express.static(path.join(__dirname, '../public')));
-
 
 // Rutas para mascotas y usuarios
 app.use('/pets', petsRoutes);
 app.use('/', usersRoutes);
+
+// Ruta para servir archivos estaticos de public
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Middleware de manejo de errores 404 para rutas no encontradas
 app.use((req, res) => {
