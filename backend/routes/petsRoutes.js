@@ -7,15 +7,15 @@ const router = express.Router();
 router.get("/", getPets);
 
 //Agrega una nueva mascota
-router.post("/",  addPet);
+router.post("/",authenticateToken,  addPet);
 
 //Actualiza mascota
-router.put("/:id", updatePet);
+router.put("/:id",authenticateToken, updatePet);
 
 //Elimina mascota
-router.delete("/:id", deletePet);
+router.delete("/:id",authenticateToken, deletePet);
 
 //Asigna mascota a un usuario
-router.post("/adopt", adoptPet);
+router.post("/adopt",authenticateToken, adoptPet);
 
 module.exports = router;
