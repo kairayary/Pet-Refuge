@@ -265,6 +265,12 @@ nav ul li a:hover {
     }
 }
 
+
+.pet-card .status.adopted {
+    color: green;
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
     #search-section {
         position: static;
