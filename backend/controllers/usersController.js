@@ -33,8 +33,8 @@ const registerUser = (req, res)=>{
     db.users.push(newUser);
     
     //Se escribe la base de datos actualizada
-     writeDatabase(db);
-     db.users = users;
+    writeDatabase(db);
+    db.users = users;
     
     // return newUser;
     //Respuesta de éxito

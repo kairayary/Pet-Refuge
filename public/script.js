@@ -68,6 +68,28 @@ const toggleForm = () => {
     contenedor.classList.toggle('active');
 };
 
+// Función para cerrar sesión
+function logout() {
+    // Elimina el token del localStorage
+    localStorage.removeItem('token');
+    // Opcionalmente, puedes limpiar otros datos si los tienes
+    // localStorage.clear();
+    
+    // Redirige al usuario a la página de inicio o login
+    window.location.href = '/register-login.html';
+}
+
+// Asignar el evento al botón de cerrar sesión
+document.addEventListener('DOMContentLoaded', () => {
+    const logoutButton = document.getElementById('logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Evitar la acción por defecto del enlace
+            logout();
+        });
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const petsGallery = document.getElementById('pets-gallery');
     const searchButton = document.getElementById('search-button');
@@ -106,11 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>Edad: ${pet.age} años</p>
                 <p>Tamaño: ${pet.size}</p>
                 <p>Descripción: ${pet.description}</p>
-                <p class="status">${pet.status === 'adoptado' ? 'Adoptado' : 'Disponible'}</p>
+                <p class="status">${pet.status.toLowerCase() === 'adoptado' ? 'Adoptado' : 'Disponible'}</p>
                 <div class="pet-actions">
                     <button class="update-button" data-id="${pet.id}">Actualizar</button>
-                    ${pet.status !== 'adoptado' ? `<button class="delete-button" data-id="${pet.id}">Eliminar</button>` : ''}
-                    ${pet.status !== 'adoptado' ? `<button class="adopt-button" data-id="${pet.id}">Adoptar</button>` : ''}
+                    ${pet.status.toLowerCase() !== 'adoptado' ? `<button class="delete-button" data-id="${pet.id}">Eliminar</button>` : ''}
+                    ${pet.status.toLowerCase() !== 'adoptado' ? `<button class="adopt-button" data-id="${pet.id}">Adoptar</button>` : ''}
                 </div>
             `;
             petsGallery.appendChild(petCard);
@@ -144,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const addPet = async () => {
-        const token = localStorage.getItem('token'); // Obtener el token
+        const token = localStorage.getItem('token'); 
         if (!token) {
             alert('Debes iniciar sesión para agregar una mascota.');
             return;
@@ -181,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const adoptPet = async (id) => {
-        const token = localStorage.getItem('token'); // Obtener el token
+        const token = localStorage.getItem('token'); 
         if (!token) {
             alert('Debes iniciar sesión para adoptar una mascota.');
             return;
@@ -224,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const deletePet = async (id) => {
-        const token = localStorage.getItem('token'); // Obtener el token
+        const token = localStorage.getItem('token'); 
         if (!token) {
             alert('Debes iniciar sesión para eliminar una mascota.');
             return;
@@ -234,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`${API_URL}/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    'Authorization': `Bearer ${token}`, // Enviar el token
+                    'Authorization': `Bearer ${token}`, 
                 }
             });
             if (response.ok) {

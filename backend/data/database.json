@@ -3,9 +3,9 @@
     {
       "id": 1738366647994,
       "name": "Khalua",
-      "type": "perro",
+      "type": "Perro",
       "description": "Schnauzer",
-      "age": 5,
+      "age": 12,
       "size": "pequeño",
       "status": "Adoptado"
     },
@@ -43,6 +43,15 @@
       "description": "gris",
       "age": 4,
       "size": "pequeño",
+      "status": "Adoptado"
+    },
+    {
+      "id": 1738528748636,
+      "name": "Shoru",
+      "type": "perro",
+      "description": "Golden dorado",
+      "age": 9,
+      "size": "grande",
       "status": "Disponible"
     }
   ],
@@ -70,6 +79,12 @@
       "userId": 1738370008505,
       "petId": 1738366680081,
       "date": "2025-02-01T00:34:42.961Z"
+    },
+    {
+      "id": 1738524820546,
+      "userId": 1738366614047,
+      "petId": 1738370057915,
+      "date": "2025-02-02T19:33:40.546Z"
     }
   ],
   "users": [
@@ -84,6 +99,12 @@
       "username": "Oscar",
       "email": "oscar@correo.com",
       "password": "$2b$10$0wHHX.WgMr50EZ1agRfIze2rVqZyqkeknDQcTyXU3cDwbWois1jee"
+    },
+    {
+      "id": 1738528711008,
+      "username": "Mateo",
+      "email": "mateo@correo.com",
+      "password": "$2b$10$HmxSeAeb2E9BD3ftNgxSPurWtdOBSvSnBvGHYhfH/XurGMUPveiuW"
     }
   ]
 }

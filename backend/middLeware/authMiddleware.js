@@ -8,7 +8,7 @@ function authenticateToken(req,res,next) {
 
     //Verifica si no se proporciono el token
     if (!token) {
-        return res.status(401).json({error:'Acceso denegao. No se proporcionó token '});   
+        return res.status(401).json({error:'Acceso denegado.'});   
     };
 
     //Para verificar el token con la clave secreta
