@@ -1,8 +1,8 @@
 {
-  "name": "petrefuge",
+  "name": "pet-refuge",
   "version": "1.0.0",
   "description": "",
-  "main": "backend/index.js",
+ 
   "scripts": {
     "start":  "node backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
